@@ -33,6 +33,7 @@ run_build() {
   docker build -t "$IMAGE_NAME" "$BUILDER_DIR"
   d="$(realpath $RELEASE_TAR)"
   echo "-- $(ls -l ${d})"
+  mount
   docker run \
     -e AURORA_VERSION=$AURORA_VERSION \
     -v "$(pwd)/specs:/specs:ro" \
