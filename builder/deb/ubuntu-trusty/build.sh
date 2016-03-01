@@ -19,7 +19,7 @@ mkdir /scratch
 cd /scratch
 
 ls -l /
-
+mount
 tar --strip-components 1 -C . -xf /src.tar.gz
 
 cp -R /specs/debian .
