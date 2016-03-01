@@ -13,7 +13,7 @@
 # limitations under the License.
 #
 
-set -eu
+set -eux
 
 print_available_builders() {
   find builder -name Dockerfile | sed "s/\/Dockerfile$//"
@@ -31,7 +31,8 @@ run_build() {
   IMAGE_NAME="aurora-$(basename $BUILDER_DIR)"
   echo "Using docker image $IMAGE_NAME"
   docker build -t "$IMAGE_NAME" "$BUILDER_DIR"
-
+  d="$(realpath $RELEASE_TAR)"
+  echo "-- $(ls -l ${d})"
   docker run \
     -e AURORA_VERSION=$AURORA_VERSION \
     -v "$(pwd)/specs:/specs:ro" \
